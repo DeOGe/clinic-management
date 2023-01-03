@@ -38,7 +38,8 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -68,5 +69,13 @@ class User extends Authenticatable implements JWTSubject
         return new Attribute(
             set: fn ($value) =>  bcrypt($value),
         );
+    }
+
+    /**
+     * Get the parent commentable model (post or video).
+     */
+    public function profile()
+    {
+        return $this->morphTo();
     }
 }

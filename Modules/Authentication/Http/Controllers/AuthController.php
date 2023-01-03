@@ -80,7 +80,9 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function userProfile() {
-        return response()->json(auth()->user());
+        $user = auth()->user();
+        $user['profile'] = $user->profile;
+        return response()->json($user);
     }
     /**
      * Get the token array structure.
